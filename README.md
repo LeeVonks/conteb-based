@@ -65,8 +65,8 @@ This endpoint retrieves the top-rated restaurants based on culinary ratings.
    
 2. Install dependencies:
    ```bash
-pip install -r requirements.txt
+   pip install -r requirements.txt
 
 3. Run the API:
    ```bash
-python app.py
+   python app.py
