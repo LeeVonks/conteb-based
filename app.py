@@ -4,17 +4,23 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import os
 from fuzzywuzzy import fuzz
+from io import StringIO
+import requests
 
 app = Flask(__name__)
 
-# Load Data
-culinary_ds = os.path.join("culinary_dataset.csv")
-rating_ds = os.path.join("culinary_rating.csv")
-user_ds = os.path.join("user.csv")
+# Load Data from URLs
+culinary_ds_url = "https://storage.googleapis.com/dataset-culinarix/culinary_dataset.csv"
+rating_ds_url = "https://storage.googleapis.com/dataset-culinarix/culinary_rating.csv"
 
-place = pd.read_csv(culinary_ds)
-rating = pd.read_csv(rating_ds)
-user = pd.read_csv(user_ds)
+# Load data from URLs
+def load_data_from_url(url):
+    response = requests.get(url)
+    data = StringIO(response.text)
+    return pd.read_csv(data)
+
+place = load_data_from_url(culinary_ds_url)
+rating = load_data_from_url(rating_ds_url)
 
 # Implementasi TF-IDF pada fitur 'Category'
 tf = TfidfVectorizer()
