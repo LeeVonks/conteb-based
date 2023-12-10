@@ -60,7 +60,7 @@ This endpoint retrieves the top-rated restaurants based on culinary ratings.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/culinary-recommendation-api.git
+   git clone https://github.com/LeeVonks/content-based.git
 
    
 2. Install dependencies:
