@@ -56,7 +56,7 @@ app = Flask(__name__)
 with open('resto_recommendations.pkl', 'rb') as file:
     cosine_sim_df = pickle.load(file)
 
-# API endpoint untuk mendapatkan rekomendasi restoran
+# API endpoint for Recommendation Restoran based on Similarity User Experience
 @app.route('/recommendations/<place_name>', methods=['GET'])
 def get_recommendations(place_name):
     try:
@@ -83,7 +83,7 @@ def get_recommendations(place_name):
     except Exception as e:
         return jsonify({'status': 'ERROR', 'message': str(e)}), 500
 
-# API endpoint untuk mendapatkan restoran dengan rating tertinggi
+# Resto Recommendation Based on Top-Rating
 @app.route('/top-rated', methods=['GET'])
 def get_top_rated_places():
     try:
@@ -97,13 +97,12 @@ def get_top_rated_places():
     except Exception as e:
         return jsonify({'status': 'ERROR', 'message': str(e)}), 500
 
-# API endpoint untuk mencari dan menampilkan restoran berdasarkan query
+# API endpoint for Search Based The Restaurant Name
 @app.route('/search', methods=['GET'])
 def search_restaurant():
     try:
-        query = request.args.get('query', '')  # Mendapatkan query dari parameter URL
+        query = request.args.get('query', '')  
         
-        # Pencarian restoran berdasarkan query pada nama tempat
         matching_restaurants = place[place['Place_Name'].str.contains(query, case=False)]
 
         if matching_restaurants.empty:
