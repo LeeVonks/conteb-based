@@ -1,20 +1,20 @@
-# Use the official Python image as the base image
-FROM python:3.9-slim
+# Gunakan gambar Python 3.10 slim resmi sebagai gambar dasar
+FROM python:3.10-slim
 
-# Set the working directory to /app
-WORKDIR /app
+# Tetapkan variabel lingkungan PYTHONUNBUFFERED ke True
+ENV PYTHONUNBUFFERED True
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Tetapkan variabel lingkungan APP_HOME ke /app
+ENV APP_HOME /app
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Tetapkan direktori kerja di dalam kontainer ke /app
+WORKDIR $APP_HOME
 
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
+# Salin semua konten dari direktori saat ini ke dalam kontainer di /app
+COPY . ./
 
-# Define environment variable
-ENV NAME World
+# Instal dependensi yang tercantum dalam requirements.txt
+RUN pip install -r requirements.txt
 
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# Tetapkan CMD untuk menjalankan gunicorn dan melayani aplikasi Flask
+CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
