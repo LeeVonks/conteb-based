@@ -1,6 +1,6 @@
 ## Culinary API Documentation
 
-This API provides functionalities to search for restaurants, fetch recommendations based on user experience similarity, and retrieve top-rated places. A machine learning model can provide recommendation based on User Input Restaurant Name which have tried before. 
+This Flask-based API provides functionalities to search for restaurants, fetch recommendations based on user experience similarity, and retrieve top-rated places. A machine learning model can provide recommendation based on User Input Restaurant Name which have tried before. 
 
 **Deployment:**
 
@@ -29,6 +29,21 @@ This API provides functionalities to search for restaurants, fetch recommendatio
         * `Long`: Restaurant longitude.
         * `Gmaps_Address`: Restaurant address on Google Maps.
         * `Image_Address`: Restaurant image URL.
+    ```json
+      {
+            "Address": "Astanaanyar, Kota Bandung",
+            "Category": "Chinese",
+            "Coordinate": "{'lat':-6.916279099486068, 'lng':107.59973743179438}",
+            "Culinary_Ratings": 4.5,
+            "Description": "Restoran yang memiliki ruangan yang luas dan cocok untuk berbagai acara, menawarkan beragam                   menu hidangan China, termasuk pork hong.",
+            "Gmaps_Address": "https://maps.app.goo.gl/z3wwKvUVjJ2Qx6zF7",
+            "Image_Address": "https://lh5.googleusercontent.com/p/AF1QipPRHbJIucHceFJTu_FMQGyP9ts6HG0F5CpVg1XD=w122-h92-k-               no",
+            "Lat": -6.916279099,
+            "Long": 107.5997374,
+            "Place_Id": 94,
+            "Place_Name": "Hongkong Restaurant"
+       },
+    ```
 ##
 
 **2. Recommendations:**
@@ -41,7 +56,27 @@ This API provides functionalities to search for restaurants, fetch recommendatio
     * `status`: `SUCCESS` if recommendations are found, `ERROR` otherwise.
     * `message`: Descriptive message about the recommendations.
     * `recommended_places`: Array of dictionaries containing information about the recommended restaurants (if `status` is `SUCCESS`):
-        * Same as "Matching Restaurants" in the `/search` response.
+    ```json
+   {
+    "message": "Rekomendasi Tempat",
+    "recommended_places": [
+        {
+            "Address": "Astanaanyar, Kota Bandung",
+            "Category": "Chinese",
+            "Coordinate": "{'lat':-6.916279099486068, 'lng':107.59973743179438}",
+            "Culinary_Ratings": 4.5,
+            "Description": "Restoran yang memiliki ruangan yang luas dan cocok untuk berbagai acara, menawarkan beragam                   menu hidangan China, termasuk pork hong.",
+            "Gmaps_Address": "https://maps.app.goo.gl/z3wwKvUVjJ2Qx6zF7",
+            "Image_Address": "https://lh5.googleusercontent.com/p/AF1QipPRHbJIucHceFJTu_FMQGyP9ts6HG0F5CpVg1XD=w122-h92-k-               no",
+            "Lat": -6.916279099,
+            "Long": 107.5997374,
+            "Place_Id": 94,
+            "Place_Name": "Hongkong Restaurant"
+        },
+          *other 9 restaurant Recommendation..*
+        "status": "SUCCESS"
+    ```
+        
 ##
 
 **3. Top-Rated:**
@@ -50,9 +85,29 @@ This API provides functionalities to search for restaurants, fetch recommendatio
 * `/top-rated`: Get the top 10 highest-rated restaurants.
 * **Response:**
     * `status`: `SUCCESS`.
-    * `message`: Message indicating successful retrieval of top-rated places.
+    * `message`: `Restoran dengan Rating Tertinggi`
     * `top_rated_places`: Array of dictionaries containing information about the top-rated restaurants:
         * Same as "Matching Restaurants" in the `/search` response.
+    ```json
+   {
+    "message": "Restoran dengan Rating Tertinggi",
+    "status": "SUCCESS"
+    "top_rated_place": [
+        {
+            "Address": "Bandung Wetan, Kota Bandung",
+            "Category": "Western",
+            "Coordinate": "{'lat':-6.891593210184938, 'lng':107.62333924190962}",
+            "Culinary_Ratings": 5.0,
+            "Description": "Nikmati pilihan menu internasional dan lokal kami yang beragam dengan variasi ala carte. Menu ini mengutamakan bahan-bahan organik lokal dan mendukung keberlanjutan, sambil mempertahankan keaslian warisan lokal. Semua hidangan disajikan dengan sentuhan teknik memasak klasik, menawarkan pengalaman rasa terbaik dari masakan Indonesia-Sunda yang segar. Temukan juga ragam minuman pilihan yang disiapkan dengan antusiasme oleh bartender kami.",
+            "Gmaps_Address": "https://maps.app.goo.gl/dEw9YqfuKYk8Tuks9",
+            "Image_Address": "https://lh5.googleusercontent.com/p/AF1QipMidZxzG5xcO94yNPt_uWX4ivA90bdbPS6Lp36Y=w122-h92-k-no",
+            "Lat": -6.89159321,
+            "Long": 107.6233392,
+            "Place_Id": 29,
+            "Place_Name": "Sadrasa Kitchen & Bar"
+        },
+          *other 9 restaurant Recommendation..*
+    ```
 ##
 
 **4. Root API:**
@@ -60,7 +115,7 @@ This API provides functionalities to search for restaurants, fetch recommendatio
 * `/`: Get a confirmation message that the service is running.
 * **Response:**
     * `status`: `SUCCESS`.
-    * `message`: Message indicating service is up and running.
+    * `message`: `Service is Up`.
 ##
 **Notes:**
 
