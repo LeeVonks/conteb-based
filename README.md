@@ -138,4 +138,20 @@ This Flask-based API provides functionalities to search for restaurants, fetch r
 - pandas
 - fuzzywuzzy
 
+## Usage
+
+1. Clone the repository:
+
+   ```bash
+   https://github.com/LeeVonks/culinarix-content-based.git
+
+   
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+
+3. Run the API:
+   ```bash
+   flask run
+
 **Please feel free to explore the API and provide feedback!**
