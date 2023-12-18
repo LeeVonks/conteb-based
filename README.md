@@ -1,4 +1,4 @@
-## Culinary API Documentation
+## Culinarix Content-Based Recommendations Flask-based API Documentation
 
 This Flask-based API provides functionalities to search for restaurants, fetch recommendations based on user experience similarity, and retrieve top-rated places. A machine learning model can provide recommendation based on User Input Restaurant Name which have tried before. 
 
