@@ -16,5 +16,7 @@ COPY . ./
 # Instal dependensi yang tercantum dalam requirements.txt
 RUN pip install -r requirements.txt
 
+ENV PORT 8080
+
 # Tetapkan CMD untuk menjalankan gunicorn dan melayani aplikasi Flask
 CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
